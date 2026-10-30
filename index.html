@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robotics Workshop - Piedmont Hills FTC Club</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #050b14;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background: linear-gradient(135deg, #0a1128 0%, #001f3f 100%);
+            border: 2px solid #00f0ff;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Tech Background Grid Lines */
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: 
+                linear-gradient(90deg, rgba(0,240,255,0.05) 1px, transparent 1px),
+                linear-gradient(rgba(0,240,255,0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+            pointer-events: none;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #00f0ff;
+            padding-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            color: #00ff66;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(0, 255, 102, 0.5);
+            margin-bottom: 5px;
+        }
+
+        .price-badge {
+            display: inline-block;
+            background-color: #9900ff;
+            color: #ffffff;
+            font-size: 1.4rem;
+            font-weight: bold;
+            padding: 8px 18px;
+            border-radius: 20px;
+            margin-top: 10px;
+            box-shadow: 0 0 10px rgba(153, 0, 255, 0.5);
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        @media (max-width: 600px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: rgba(16, 26, 50, 0.8);
+            border: 1px solid #00d2ff;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .card h2 {
+            color: #00d2ff;
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            border-bottom: 1px solid #00d2ff;
+            padding-bottom: 5px;
+        }
+
+        .topic-item {
+            margin-bottom: 12px;
+        }
+
+        .topic-item h3 {
+            color: #ff007f;
+            font-size: 1.1rem;
+        }
+
+        .topic-item p {
+            font-size: 0.9rem;
+            color: #d1d5db;
+        }
+
+        .dates-list {
+            list-style: none;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #ffffff;
+        }
+
+        .dates-list span {
+            color: #00ff66;
+            font-weight: bold;
+        }
+
+        .info-section {
+            text-align: center;
+            background: rgba(153, 0, 255, 0.15);
+            border: 1px solid #9900ff;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .info-section p {
+            font-size: 1.05rem;
+            color: #e0e7ff;
+            margin-bottom: 5px;
+        }
+
+        .grade-level {
+            color: #ff007f;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .promo-banner {
+            background: linear-gradient(90deg, #ff007f, #9900ff);
+            text-align: center;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .btn-container {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .register-btn {
+            display: inline-block;
+            background: #00ff66;
+            color: #050b14;
+            font-size: 1.4rem;
+            font-weight: bold;
+            text-decoration: none;
+            padding: 14px 32px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 255, 102, 0.6);
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .register-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(0, 255, 102, 0.9);
+            background: #00d2ff;
+        }
+
+        .footer-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 15px;
+            border-radius: 8px;
+            border-top: 1px solid #00f0ff;
+        }
+
+        .contact {
+            font-size: 0.95rem;
+            color: #00f0ff;
+        }
+
+        .contact a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: #00ff66;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Robotics Workshop</h1>
+        <div class="price-badge">$20 per workshop</div>
+    </header>
+
+    <div class="info-section">
+        <p><strong>Run by FTC Club at Piedmont Hills</strong></p>
+        <p>Led by student mentors that are fun and enjoyable!</p>
+        <p class="grade-level">Elementary Workshop (Grades 3rd to 5th)</p>
+    </div>
+
+    <div class="main-content">
+        <div class="card">
+            <h2>Topics Being Explored</h2>
+            
+            <div class="topic-item">
+                <h3>Circuit Building</h3>
+                <p>Using a simulator to build projects using LEDs, sensors, and components.</p>
+            </div>
+
+            <div class="topic-item">
+                <h3>Coding</h3>
+                <p>Write code, solve challenges, and bring your circuit to life.</p>
+            </div>
+
+            <div class="topic-item">
+                <h3>3D Modeling</h3>
+                <p>Design your own 3D creations and explore digital design.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Dates & Time</h2>
+            <ul class="dates-list">
+                <li><span>November 7, 2026</span></li>
+                <li><span>November 14, 2026</span></li>
+                <li><span>December 5, 2026</span></li>
+            </ul>
+            <p style="margin-top: 15px; font-weight: bold; color: #00f0ff;">Time: 9:30 AM – 11:15 AM</p>
+        </div>
+    </div>
+
+    <div class="promo-banner">
+        Register before November 1<sup>st</sup> and get 15% off!
+    </div>
+
+    <div class="btn-container">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdgbR80LM4KacEFCkg7q_fMl4pc5btouMS2Y71B_8XckHNI-g/viewform" target="_blank" class="register-btn">Register Now &amp; Pay Later!</a>
+    </div>
+
+    <div class="footer-info">
+        <div class="tagline">Register Now, Pay Later!!</div>
+        <div class="contact">
+            <strong>Contact Us:</strong> <a href="mailto:phhsftcclub@gmail.com">phhsftcclub@gmail.com</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
